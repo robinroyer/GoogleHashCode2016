@@ -1,4 +1,4 @@
-GoogleHashCode2016
+GoogleHashCode2016 - Hash-Rocket
 ==================
 
 Our code for Google Hash Code 2016. 
