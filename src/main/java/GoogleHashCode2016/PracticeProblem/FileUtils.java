@@ -31,11 +31,11 @@ public class FileUtils {
 
 
     /**
-     * Parse file using BufferedReader
+     * Parse file
      *
      * @throws IOException
      */
-    public void parseFileBufferedReader() throws IOException {
+    public void parseFile() throws IOException {
         Path path = Paths.get(inputFile);
 
         try (BufferedReader bufferedReader = Files.newBufferedReader(path)) {
@@ -53,7 +53,6 @@ public class FileUtils {
                 current_line = bufferedReader.readLine();
                 pictureMatrix[i] = current_line.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
             }
-
         }
     }
 

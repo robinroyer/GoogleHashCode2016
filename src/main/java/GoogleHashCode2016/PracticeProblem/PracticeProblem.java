@@ -15,7 +15,7 @@ public class PracticeProblem {
 
         FileUtils fileUtils = new FileUtils("learn_and_teach.in","learn_and_teach.out");
 
-        fileUtils.parseFileBufferedReader();
+        fileUtils.parseFile();
 
         int row = fileUtils.getRow();
         int columns = fileUtils.getColumns();
