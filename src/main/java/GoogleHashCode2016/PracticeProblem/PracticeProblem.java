@@ -11,20 +11,19 @@ import com.sun.istack.internal.FinalArrayList;
  *
  */
 public class PracticeProblem {
-	public static final Character NEED_TO_BE_PAINT = '#';
-	
-	public static final String LEARN_AND_TEACH_IN = "src/main/java/GoogleHashCode2016/PracticeProblem/learn_and_teach.in";
-	public static final String LEARN_AND_TEACH_OUT = "src/main/java/GoogleHashCode2016/PracticeProblem/learn_and_teach.out";
-	
-	public static final String LOGO_IN = "src/main/java/GoogleHashCode2016/PracticeProblem/logo.in";
-	public static final String LOGO_OUT = "src/main/java/GoogleHashCode2016/PracticeProblem/logo.out";
-	
-	public static final String RIGHT_ANGLE_IN = "src/main/java/GoogleHashCode2016/PracticeProblem/right_angle.in";
-	public static final String RIGHT_ANGLE_OUT = "src/main/java/GoogleHashCode2016/PracticeProblem/right_angle.out";
+    public static final Character NEED_TO_BE_PAINT = '#';
+
+    public static final String LEARN_AND_TEACH_IN = "src/main/java/GoogleHashCode2016/PracticeProblem/learn_and_teach.in";
+    public static final String LEARN_AND_TEACH_OUT = "src/main/java/GoogleHashCode2016/PracticeProblem/learn_and_teach.out";
+
+    public static final String LOGO_IN = "src/main/java/GoogleHashCode2016/PracticeProblem/logo.in";
+    public static final String LOGO_OUT = "src/main/java/GoogleHashCode2016/PracticeProblem/logo.out";
+
+    public static final String RIGHT_ANGLE_IN = "src/main/java/GoogleHashCode2016/PracticeProblem/right_angle.in";
+    public static final String RIGHT_ANGLE_OUT = "src/main/java/GoogleHashCode2016/PracticeProblem/right_angle.out";
 
 
-
-    public static void main(String [] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         FileUtils fileUtils = new FileUtils(LEARN_AND_TEACH_IN, LEARN_AND_TEACH_OUT);
 
@@ -40,7 +39,7 @@ public class PracticeProblem {
     }
 
 
-    public static List<String> fakeSolution(){
+    public static List<String> fakeSolution() {
         List<String> strings = new ArrayList<>();
 
         strings.add("PAINT_SQUARE 2 3 1");
@@ -52,13 +51,13 @@ public class PracticeProblem {
     }
 
 
-    public static List<Operation>  easySolution(Character[][] mat){
+    public static List<Operation> easySolution(Character[][] mat) {
         List<Operation> operationTreeSet = new ArrayList<>();
 
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[0].length; j++) {
-                if (mat[i][j] == NEED_TO_BE_PAINT){
-                    PaintSqare paintSqare = new PaintSqare(i,j,0);
+                if (mat[i][j] == NEED_TO_BE_PAINT) {
+                    PaintSqare paintSqare = new PaintSqare(i, j, 0);
                     // paint all unit case
                     operationTreeSet.add(paintSqare);
                 }
@@ -67,8 +66,8 @@ public class PracticeProblem {
         return operationTreeSet;
     }
 
-    static abstract class Operation implements Comparable<Operation>{
-        int R,C;
+    static abstract class Operation implements Comparable<Operation> {
+        int R, C;
 
         public Operation(int r, int c) {
             R = r;
@@ -86,7 +85,7 @@ public class PracticeProblem {
 
     }
 
-  static   class PaintSqare extends Operation {
+    static class PaintSqare extends Operation {
 
         int S;
 
@@ -97,35 +96,35 @@ public class PracticeProblem {
 
         @Override
         public String toString() {
-            return "PAINT_SQUARE " +R+" "+C+" "+S;
+            return "PAINT_SQUARE " + R + " " + C + " " + S;
         }
 
 
         @Override
         public int compareTo(Operation o) {
-            if(o instanceof PaintSqare){
+            if (o instanceof PaintSqare) {
                 PaintSqare paintSqare = (PaintSqare) o;
-                if(paintSqare.getR() == R) {
-                    if(paintSqare.getC() == C){
+                if (paintSqare.getR() == R) {
+                    if (paintSqare.getC() == C) {
                         return 0;
-                    } else if(paintSqare.getC() > C){
+                    } else if (paintSqare.getC() > C) {
                         return -1;
                     } else
                         return 1;
-                } else if(paintSqare.getR() > R){
+                } else if (paintSqare.getR() > R) {
                     return -1;
                 } else return 1;
 
             } else
-            return 0;
+                return 0;
         }
     }
 
-  static   class PaintLine extends Operation {
+    static class PaintLine extends Operation {
 
-        int R2,C2;
+        int R2, C2;
 
-        public PaintLine(int r, int c,int r2,int c2) {
+        public PaintLine(int r, int c, int r2, int c2) {
             super(r, c);
             this.R2 = r2;
             this.C2 = c2;
@@ -141,7 +140,7 @@ public class PracticeProblem {
 
         @Override
         public String toString() {
-            return "PAINT_LINE "+R+" "+C+" "+R2+" "+C2;
+            return "PAINT_LINE " + R + " " + C + " " + R2 + " " + C2;
         }
 
         @Override
@@ -151,14 +150,14 @@ public class PracticeProblem {
         }
     }
 
-  static   class EraseCell extends Operation {
+    static class EraseCell extends Operation {
         public EraseCell(int r, int c) {
             super(r, c);
         }
 
         @Override
         public String toString() {
-            return "ERASE_CELL "+R+" "+C;
+            return "ERASE_CELL " + R + " " + C;
         }
 
         @Override
