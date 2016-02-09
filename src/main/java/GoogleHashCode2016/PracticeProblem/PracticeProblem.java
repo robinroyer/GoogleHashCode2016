@@ -44,12 +44,12 @@ public class PracticeProblem {
         List<Operation> operationsToRemove = new ArrayList<>();
 
         for (int i = 0; i < list.size() - 1; i++) {
-            PaintSqare paintSqare = (PaintSqare) list.get(i);
+            PaintSquare paintSqare = (PaintSquare) list.get(i);
             int R = paintSqare.getR();
             List<Operation> currentOperationToRemove = new ArrayList<>();
 
             for (int j = i+1; j < list.size()-1; j++) {
-                PaintSqare paintSqare2 = (PaintSqare) list.get(j);
+                PaintSquare paintSqare2 = (PaintSquare) list.get(j);
                 if (R == paintSqare.getR() && paintSqare2.getC() == list.get(j-1).getC()+1){
                     currentOperationToRemove.add(paintSqare2);
                 } else {
@@ -61,7 +61,7 @@ public class PracticeProblem {
 
             if(!currentOperationToRemove.isEmpty()){
 
-                PaintSqare last =(PaintSqare) currentOperationToRemove.get(currentOperationToRemove.size() -1);
+                PaintSquare last =(PaintSquare) currentOperationToRemove.get(currentOperationToRemove.size() -1);
                 PaintLine paintLine = new PaintLine(paintSqare.getR(),paintSqare.getC(),last.getR(),last.getC());
                 operationList.add(paintLine);
                 operationsToRemove.addAll(currentOperationToRemove);
@@ -92,7 +92,7 @@ public class PracticeProblem {
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[0].length; j++) {
                 if (mat[i][j] == NEED_TO_BE_PAINT) {
-                    PaintSqare paintSqare = new PaintSqare(i, j, 0);
+                    PaintSquare paintSqare = new PaintSquare(i, j, 0);
                     // paint all unit case
                     operationTreeSet.add(paintSqare);
                 }
@@ -120,11 +120,11 @@ public class PracticeProblem {
 
     }
 
-    static class PaintSqare extends Operation {
+    static class PaintSquare extends Operation {
 
         int S;
 
-        public PaintSqare(int r, int c, int S) {
+        public PaintSquare(int r, int c, int S) {
             super(r, c);
             this.S = S;
         }
@@ -137,8 +137,8 @@ public class PracticeProblem {
 
         @Override
         public int compareTo(Operation o) {
-            if (o instanceof PaintSqare) {
-                PaintSqare paintSqare = (PaintSqare) o;
+            if (o instanceof PaintSquare) {
+                PaintSquare paintSqare = (PaintSquare) o;
                 if (paintSqare.getR() == R) {
                     if (paintSqare.getC() == C) {
                         return 0;
