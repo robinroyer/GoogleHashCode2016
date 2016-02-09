@@ -25,8 +25,10 @@ public class PracticeProblem {
 
     public static void main(String[] args) throws IOException {
 
-        FileUtils fileUtils = new FileUtils(LEARN_AND_TEACH_IN, LEARN_AND_TEACH_OUT);
-
+//        FileUtils fileUtils = new FileUtils(LEARN_AND_TEACH_IN, LEARN_AND_TEACH_OUT);
+//        FileUtils fileUtils = new FileUtils(LOGO_IN, LOGO_OUT);
+        FileUtils fileUtils = new FileUtils(RIGHT_ANGLE_IN, RIGHT_ANGLE_OUT);
+        
         fileUtils.parseFile();
 
         int row = fileUtils.getRow();
@@ -35,23 +37,30 @@ public class PracticeProblem {
 
 //        fileUtils.writeTofile(fakeSolution());
         List<Operation> operationList = easySolution(picture);
-        fileUtils.writeTofile(aggregateSquareToLine(operationList));
+        List<Operation> operationListWithLines = aggregateSquareToLine(operationList);
+        List<Operation> operationListWithColumns = aggregateSquareToColumn(operationListWithLines);
+        fileUtils.writeTofile(operationListWithColumns);
         System.out.println("-DONE");
     }
 
+    
+    
+    
+    
     public static List<Operation> aggregateSquareToLine(List<Operation> list){
         List<Operation> operationList = new ArrayList<>();
         List<Operation> operationsToRemove = new ArrayList<>();
 
         for (int i = 0; i < list.size() - 1; i++) {
-            PaintSquare paintSqare = (PaintSquare) list.get(i);
-            int R = paintSqare.getR();
+            PaintSquare paintSquare = (PaintSquare) list.get(i);
+            int R = paintSquare.getR();
             List<Operation> currentOperationToRemove = new ArrayList<>();
-
+            
+            // add all the squares right to paintSquare to currentOperationToRemove
             for (int j = i+1; j < list.size()-1; j++) {
-                PaintSquare paintSqare2 = (PaintSquare) list.get(j);
-                if (R == paintSqare.getR() && paintSqare2.getC() == list.get(j-1).getC()+1){
-                    currentOperationToRemove.add(paintSqare2);
+                PaintSquare paintSquare2 = (PaintSquare) list.get(j);
+                if (R == paintSquare2.getR() && paintSquare2.getC() == list.get(j-1).getC()+1){
+                    currentOperationToRemove.add(paintSquare2);
                 } else {
                     break;
                 }
@@ -62,9 +71,50 @@ public class PracticeProblem {
             if(!currentOperationToRemove.isEmpty()){
 
                 PaintSquare last =(PaintSquare) currentOperationToRemove.get(currentOperationToRemove.size() -1);
-                PaintLine paintLine = new PaintLine(paintSqare.getR(),paintSqare.getC(),last.getR(),last.getC());
+                PaintLine paintLine = new PaintLine(paintSquare.getR(),paintSquare.getC(),last.getR(),last.getC());
                 operationList.add(paintLine);
                 operationsToRemove.addAll(currentOperationToRemove);
+                currentOperationToRemove.clear();
+            }
+        }
+        list.removeAll(operationsToRemove);
+        operationList.addAll(list);
+        return operationList;
+    }
+    
+    public static List<Operation> aggregateSquareToColumn(List<Operation> list){
+    	List<PaintSquare> paintSquareList = new ArrayList<>();
+        List<Operation> operationList = new ArrayList<>();
+        List<Operation> operationsToRemove = new ArrayList<>();
+        
+        // peuplate paintSquareList
+        for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) instanceof PaintSquare) {
+				paintSquareList.add((PaintSquare)list.get(i));
+			}
+		}
+
+        for (int i = 0; i < paintSquareList.size() - 1; i++) {
+            PaintSquare paintSquare = (PaintSquare) paintSquareList.get(i);
+            PaintSquare previous = paintSquare;
+            List<Operation> currentOperationToRemove = new ArrayList<>();
+            
+            // add all the squares below to paintSquare to currentOperationToRemove
+            for (int j = i+1; j < paintSquareList.size()-1; j++) {
+                PaintSquare paintSquare2 = (PaintSquare) paintSquareList.get(j);
+                if (paintSquare.getC() == paintSquare2.getC() && paintSquare2.getR() == previous.getR()+1){
+                    currentOperationToRemove.add(paintSquare2);
+                    previous =  paintSquare2;
+                } 
+            }
+
+            if(!currentOperationToRemove.isEmpty()){
+            	
+                PaintSquare last =(PaintSquare) currentOperationToRemove.get(currentOperationToRemove.size() -1);
+                PaintLine paintLine = new PaintLine(paintSquare.getR(),paintSquare.getC(),last.getR(),last.getC());
+                operationList.add(paintLine);
+                operationsToRemove.addAll(currentOperationToRemove);
+                paintSquareList.removeAll(operationsToRemove);
                 currentOperationToRemove.clear();
             }
         }
@@ -138,15 +188,15 @@ public class PracticeProblem {
         @Override
         public int compareTo(Operation o) {
             if (o instanceof PaintSquare) {
-                PaintSquare paintSqare = (PaintSquare) o;
-                if (paintSqare.getR() == R) {
-                    if (paintSqare.getC() == C) {
+                PaintSquare paintSquare = (PaintSquare) o;
+                if (paintSquare.getR() == R) {
+                    if (paintSquare.getC() == C) {
                         return 0;
-                    } else if (paintSqare.getC() > C) {
+                    } else if (paintSquare.getC() > C) {
                         return -1;
                     } else
                         return 1;
-                } else if (paintSqare.getR() > R) {
+                } else if (paintSquare.getR() > R) {
                     return -1;
                 } else return 1;
 
