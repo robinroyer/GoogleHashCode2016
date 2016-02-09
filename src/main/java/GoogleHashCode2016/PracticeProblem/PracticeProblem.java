@@ -62,6 +62,107 @@ public class PracticeProblem {
 			}
 		} 
         return strings;
-		
 	}
+
+
+    abstract class Operation implements Comparable<Operation>{
+        int R,C;
+
+        public Operation(int r, int c) {
+            R = r;
+            C = c;
+        }
+
+        public int getR() {
+            return R;
+        }
+
+        public int getC() {
+            return C;
+        }
+
+
+    }
+
+    class PaintSqare extends Operation {
+
+        int S;
+
+        public PaintSqare(int r, int c, int S) {
+            super(r, c);
+            this.S = S;
+        }
+
+        @Override
+        public String toString() {
+            return "PAINT_SQUARE " +R+" "+C+" "+S;
+        }
+
+
+        @Override
+        public int compareTo(Operation o) {
+            if(o instanceof PaintSqare){
+                PaintSqare paintSqare = (PaintSqare) o;
+                if(paintSqare.getR() == R) {
+                    if(paintSqare.getC() == C){
+                        return 0;
+                    } else if(paintSqare.getC() > C){
+                        return 1;
+                    } else
+                        return -1;
+                } else if(paintSqare.getR() > R){
+                    return 1;
+                } else return -1;
+
+            } else
+            return 0;
+        }
+    }
+
+    class PaintLine extends Operation {
+
+        int R2,C2;
+
+        public PaintLine(int r, int c,int r2,int c2) {
+            super(r, c);
+            this.R2 = r2;
+            this.C2 = c2;
+        }
+
+        public int getC2() {
+            return C2;
+        }
+
+        public int getR2() {
+            return R2;
+        }
+
+        @Override
+        public String toString() {
+            return "PAINT_LINE "+R+" "+C+" "+R2+" "+C2;
+        }
+
+        @Override
+        public int compareTo(Operation o) {
+            //TODO ?
+            return 0;
+        }
+    }
+
+    class EraseCell extends Operation {
+        public EraseCell(int r, int c) {
+            super(r, c);
+        }
+
+        @Override
+        public String toString() {
+            return "ERASE_CELL "+R+" "+C;
+        }
+
+        @Override
+        public int compareTo(Operation o) {
+            //TODO ?
+            return 0;
+        }
+    }
 }
