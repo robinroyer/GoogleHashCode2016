@@ -3,6 +3,7 @@ package GoogleHashCode2016.PracticeProblem;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 import com.sun.istack.internal.FinalArrayList;
 
@@ -49,23 +50,24 @@ public class PracticeProblem {
 
         return strings;
     }
-    
-    public static List<String> easySolution(Character[][] mat) {
-    	 List<String> strings = new ArrayList<>();
-
-    	 for (int i = 0; i < mat.length; i++) {
-			for (int j = 0; j < mat[0].length; j++) {
-				if (mat[i][j] == NEED_TO_BE_PAINT){
-					 // paint all unit case
-					strings.add("PAINT_SQUARE " + i + " " + j + " 0 ");
-				}
-			}
-		} 
-        return strings;
-	}
 
 
-    abstract class Operation implements Comparable<Operation>{
+    public static List<Operation>  easySolution(Character[][] mat){
+        List<Operation> operationTreeSet = new ArrayList<>();
+
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[0].length; j++) {
+                if (mat[i][j] == NEED_TO_BE_PAINT){
+                    PaintSqare paintSqare = new PaintSqare(i,j,0);
+                    // paint all unit case
+                    operationTreeSet.add(paintSqare);
+                }
+            }
+        }
+        return operationTreeSet;
+    }
+
+    static abstract class Operation implements Comparable<Operation>{
         int R,C;
 
         public Operation(int r, int c) {
@@ -84,7 +86,7 @@ public class PracticeProblem {
 
     }
 
-    class PaintSqare extends Operation {
+  static   class PaintSqare extends Operation {
 
         int S;
 
@@ -107,19 +109,19 @@ public class PracticeProblem {
                     if(paintSqare.getC() == C){
                         return 0;
                     } else if(paintSqare.getC() > C){
-                        return 1;
-                    } else
                         return -1;
+                    } else
+                        return 1;
                 } else if(paintSqare.getR() > R){
-                    return 1;
-                } else return -1;
+                    return -1;
+                } else return 1;
 
             } else
             return 0;
         }
     }
 
-    class PaintLine extends Operation {
+  static   class PaintLine extends Operation {
 
         int R2,C2;
 
@@ -149,7 +151,7 @@ public class PracticeProblem {
         }
     }
 
-    class EraseCell extends Operation {
+  static   class EraseCell extends Operation {
         public EraseCell(int r, int c) {
             super(r, c);
         }

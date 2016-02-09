@@ -60,14 +60,14 @@ public class FileUtils {
     /**
      * Write a list of operations in the outputfile
      */
-    public void writeTofile(List<String> operations) throws IOException {
+    public void writeTofile(List<PracticeProblem.Operation> operations) throws IOException {
         writeToFile(operations, outputFile);
     }
 
     /**
      * Write a list of operations in the fileName
      */
-    public static void writeToFile(List<String> operations, String fileName) throws IOException {
+    public static void writeToFile(List<PracticeProblem.Operation> operations, String fileName) throws IOException {
         Path path = Paths.get(fileName);
 
         try (BufferedWriter bufferedWriter = Files.newBufferedWriter(path)) {
@@ -76,8 +76,8 @@ public class FileUtils {
             bufferedWriter.write(String.valueOf(operations.size()));
             bufferedWriter.write("\n");
 
-            for (String operation : operations) {
-                bufferedWriter.write(operation);
+            for (PracticeProblem.Operation operation : operations) {
+                bufferedWriter.write(operation.toString());
                 bufferedWriter.write("\n");
             }
         }
