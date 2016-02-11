@@ -1,6 +1,10 @@
 package GoogleHashCode2016.HashCode2016;
 
+import javafx.util.Pair;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static java.lang.Math.*;
 
@@ -58,8 +62,8 @@ public class Helpers {
     }
 
     /**
-     * retourne le produit en fonction de son id
-     * @param list
+     * retourn le produit en fonction de son id
+     * @param list la liste de tous les produits
      * @param idProduct
      * @return
      */
@@ -71,5 +75,39 @@ public class Helpers {
                 return p;
         }
         return null;
+    }
+
+    /**
+     * retourne la liste de tout les produits d'un stock
+     * @param stock
+     * @param f
+     * @return
+     */
+    public static List<Product> stockToProductList(Map<Integer, Integer> stock, FileUtils2016 f)
+    {
+        List<Product> products = new ArrayList<>();
+
+        for(int id : stock.keySet())
+        {
+            products.add(getProduit(f.getProductList(), id));
+        }
+
+        return products;
+    }
+    /**
+     * retourne le poid total du stock
+     * @param stock
+     * @param f
+     * @return
+     */
+    public static int sumWeight(Map<Integer, Integer> stock, FileUtils2016 f)
+    {
+        int sumWeight = 0;
+        for(Product produit : stockToProductList(stock,  f))
+        {
+            sumWeight += produit.weight;
+        }
+
+        return sumWeight;
     }
 }
