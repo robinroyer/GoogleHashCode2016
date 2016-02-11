@@ -32,8 +32,18 @@ public class Warehouse {
         return stock.get(idProduct);
     }
 
-    public boolean hasProduct(Product p)
-    {
+    public boolean hasProduct(Product p) {
         return (stock.get(p.id) != null);
     }
+
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "id=" + id +
+                ", r=" + r +
+                ", c=" + c +
+                ", stock=" + stock +
+                '}';
+    }
+    
 }

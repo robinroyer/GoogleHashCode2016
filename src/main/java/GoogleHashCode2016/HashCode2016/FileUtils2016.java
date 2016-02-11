@@ -1,6 +1,9 @@
 package GoogleHashCode2016.HashCode2016;
 
+import GoogleHashCode2016.PracticeProblem.PracticeProblem;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,11 +29,14 @@ public class FileUtils2016 {
 
     int turns;
 
-    int payload;
+    int max_weight_drone;
 
     List<Integer> list_of_product_type;
 
     int nb_warehouse;
+
+    List<Drone> droneList = new ArrayList<>();
+
 
 
     int nb_orders;
@@ -70,14 +76,14 @@ public class FileUtils2016 {
             drones = Integer.parseInt(splited_string[2]);
             turns = Integer.parseInt(splited_string[3]);
 
-            payload = Integer.parseInt(splited_string[4]);
+            max_weight_drone = Integer.parseInt(splited_string[4]);
 
 
          /*   System.out.println(row);
             System.out.println(columns);
             System.out.println(drones);
             System.out.println(turns);
-            System.out.println(payload); */
+            System.out.println(max_weight_drone); */
 
 
             current_line = bufferedReader.readLine();
@@ -111,16 +117,14 @@ public class FileUtils2016 {
                 int columWareHouse = Integer.parseInt(first_splitted[1]);
                 Warehouse warehouse = new Warehouse(i, rowWareHouse, columWareHouse);
 
-                List<Integer> dispo_produit = new ArrayList<>();
 
                 String second = bufferedReader.readLine();
 
-                // System.out.println(second);
-
                 String[] second_splitted = second.split(" ");
 
+
                 for (int j = 0; j < second_splitted.length; j++) {
-                    warehouse.setProductStock(i, Integer.parseInt(second_splitted[i]));
+                    warehouse.setProductStock(j, Integer.parseInt(second_splitted[j]));
                 }
 
                 warehouseArrayList.add(warehouse);
@@ -151,7 +155,7 @@ public class FileUtils2016 {
                 String third = bufferedReader.readLine();
                 String[] thirs_splitted = third.split(" ");
                 for (int j = 0; j < nb; j++) {
-                    commands.getListProduct().add(productList.get(j));
+                    commands.getStock().put(j,Integer.parseInt(thirs_splitted[j]));
                 }
 
 
@@ -160,8 +164,81 @@ public class FileUtils2016 {
 
 
             }
-
-
         }
+
+
+        for (int i = 0; i < drones; i++) {
+            Drone drone = new Drone(i,warehouseArrayList.get(0).r,warehouseArrayList.get(0).c,max_weight_drone);
+        }
+
+    }
+
+
+
+    /**
+     * Write a list of operations in the fileName
+     */
+    public void writeToFile(List<String> stringList) throws IOException {
+        Path path = Paths.get(outputFile);
+
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(path)) {
+
+            // write the number of operations
+            bufferedWriter.write(stringList.size());
+            bufferedWriter.write("\n");
+
+            for (String st : stringList) {
+                bufferedWriter.write(st);
+                bufferedWriter.write("\n");
+            }
+        }
+    }
+
+    public List<Drone> getDroneList() {
+        return droneList;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public int getDrones() {
+        return drones;
+    }
+
+    public int getTurns() {
+        return turns;
+    }
+
+    public int getMax_weight_drone() {
+        return max_weight_drone;
+    }
+
+    public List<Integer> getList_of_product_type() {
+        return list_of_product_type;
+    }
+
+    public int getNb_warehouse() {
+        return nb_warehouse;
+    }
+
+    public int getNb_orders() {
+        return nb_orders;
+    }
+
+    public List<Warehouse> getWarehouseArrayList() {
+        return warehouseArrayList;
+    }
+
+    public List<Commands> getCommandsList() {
+        return commandsList;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
     }
 }
