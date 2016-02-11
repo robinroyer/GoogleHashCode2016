@@ -11,9 +11,20 @@ import static java.lang.Math.*;
 
 public class Helpers {
 
+
+
     public static int getTime (int x1, int y1, int x2, int y2) {
         //
         double distance = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
         return (int)ceil(distance);
+    }
+
+    public static Warehouse findWarehous (Product p, List<Warehouse> warehouses) {
+        for (Warehouse warehouse : warehouses) {
+            if(warehouse.hasProduct(p)) {
+                return warehouse;
+            }
+        }
+        return null;
     }
 }
