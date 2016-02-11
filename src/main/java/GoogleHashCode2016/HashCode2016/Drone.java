@@ -25,6 +25,12 @@ public class Drone {
         this.commands = new ArrayList<Commands>();
     }
 
+    /**
+     *
+     * @param r
+     * @param c
+     * @return
+     */
     private int goTo (int r, int c) {
         // return time fo travel to position
         int time = getTime(this.r, this.c, r, c);
@@ -32,8 +38,11 @@ public class Drone {
         return time;
     }
 
-    /*
-    r et c la position de la commande
+    /**
+     * ajout le produit au drone
+     * @param product
+     * @param r et c la position de la commande
+     * @param warehouses
      */
     public void addProductDelivery (Product product, int r, int c, List <Warehouse> warehouses) {
         Warehouse commandWarehouse;
