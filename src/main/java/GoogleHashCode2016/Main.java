@@ -27,7 +27,7 @@ public class Main {
 
             if(produit != null)
             {
-                drone.addProductDelivery(produit, command.r, command.c, f.getWarehouseArrayList());
+                drone.addProductDelivery(produit, command, f.getWarehouseArrayList());
             }
         }
     }

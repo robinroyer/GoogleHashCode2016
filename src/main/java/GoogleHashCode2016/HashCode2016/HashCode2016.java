@@ -33,13 +33,24 @@ public class HashCode2016 {
         List<Commands> commandsList = fileUtils2016.commandsList;
         List<Product> productList = fileUtils2016.productList;
 
+        Product produit;
+        Drone drone;
+        int productId;
 
+        for(Commands command : commandsList)
+        {
+            drone = Helpers.getFreeDrone(droneList);
 
+            productId = command.getFirstProductId();
+            produit = Helpers.getProduit(productList, productId);
 
+            if(produit != null)
+            {
+                drone.addProductDelivery(produit, command, warehousesList);
+            }
+        }
 
-
-
-
+        fileUtils2016.writeToFile(Helpers.getOutputStringList());
 
     }
 }
