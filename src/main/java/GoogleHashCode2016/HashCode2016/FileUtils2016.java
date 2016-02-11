@@ -115,7 +115,6 @@ public class FileUtils2016 {
 
                 String second = bufferedReader.readLine();
 
-                // System.out.println(second);
 
                 String[] second_splitted = second.split(" ");
 
@@ -151,7 +150,7 @@ public class FileUtils2016 {
                 String third = bufferedReader.readLine();
                 String[] thirs_splitted = third.split(" ");
                 for (int j = 0; j < nb; j++) {
-                    commands.getListProduct().add(productList.get(j));
+                    commands.getStock().put(j,Integer.parseInt(thirs_splitted[j]));
                 }
 
 

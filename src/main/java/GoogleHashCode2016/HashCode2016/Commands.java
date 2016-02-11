@@ -1,6 +1,7 @@
 package GoogleHashCode2016.HashCode2016;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,9 +14,8 @@ public class Commands {
     public int r;
     public int c;
 
-    public ArrayList<Product> listProduct = new ArrayList<>();
 
-    public Map<Integer, Integer> stock;
+    public Map<Integer, Integer> stock = new HashMap<>();
 
     public Commands(int id, int r, int c){
         this.id = id;
@@ -24,7 +24,7 @@ public class Commands {
     }
 
 
-    public ArrayList<Product> getListProduct() {
-        return listProduct;
+    public Map<Integer, Integer> getStock() {
+        return stock;
     }
 }
