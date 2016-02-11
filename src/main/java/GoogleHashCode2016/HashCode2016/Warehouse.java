@@ -1,5 +1,6 @@
 package GoogleHashCode2016.HashCode2016;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -10,7 +11,7 @@ public class Warehouse {
     int id;
     int r;
     int c;
-    Map<Integer, Integer> stock;
+    Map<Integer, Integer> stock = new HashMap<>();
 
     public Warehouse(int id, int r, int c){
         this.id = id;

@@ -39,9 +39,6 @@ public class FileUtils2016 {
     List<Warehouse> warehouseArrayList = new ArrayList<>();
 
 
-
-
-
     public FileUtils2016(String inputFile, String outputFile) {
         this.inputFile = inputFile;
         this.outputFile = outputFile;
@@ -85,7 +82,7 @@ public class FileUtils2016 {
 
             list_of_product_type = new ArrayList<>();
 
-            String[] id_products =  bufferedReader.readLine().split(" ");
+            String[] id_products = bufferedReader.readLine().split(" ");
 
             for (int i = 0; i < id_products.length; i++) {
                 list_of_product_type.add(Integer.parseInt(id_products[i]));
@@ -97,48 +94,42 @@ public class FileUtils2016 {
 
 
             for (int i = 0; i < nb_warehouse; i++) {
-                String first  = bufferedReader.readLine();
+                String first = bufferedReader.readLine();
                 String[] first_splitted = first.split(" ");
-
 
 
                 int rowWareHouse = Integer.parseInt(first_splitted[0]);
                 int columWareHouse = Integer.parseInt(first_splitted[1]);
-                Warehouse warehouse = new Warehouse(i,rowWareHouse,columWareHouse);
+                Warehouse warehouse = new Warehouse(i, rowWareHouse, columWareHouse);
 
                 List<Integer> dispo_produit = new ArrayList<>();
 
                 String second = bufferedReader.readLine();
 
-               // System.out.println(second);
+                // System.out.println(second);
 
-                String [] second_splitted = second.split(" ");
+                String[] second_splitted = second.split(" ");
 
                 for (int j = 0; j < second_splitted.length; j++) {
-                    warehouse.setProductStock(i,Integer.parseInt(second_splitted[i]));
+                    warehouse.setProductStock(i, Integer.parseInt(second_splitted[i]));
                 }
 
-                                warehouseArrayList.add(warehouse);
+                warehouseArrayList.add(warehouse);
 
             }
 
 
-
             current_line = bufferedReader.readLine();
 
-            nb_orders= Integer.parseInt(current_line);
+            nb_orders = Integer.parseInt(current_line);
 
             System.out.println(nb_orders);
-
 
 
             for (int i = 0; i < nb_orders; i++) {
                 String first = bufferedReader.readLine();
 
             }
-
-
-
 
 
         }
