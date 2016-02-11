@@ -155,7 +155,13 @@ public class FileUtils2016 {
                 String third = bufferedReader.readLine();
                 String[] thirs_splitted = third.split(" ");
                 for (int j = 0; j < nb; j++) {
-                    commands.getStock().put(j,Integer.parseInt(thirs_splitted[j]));
+                    if(commands.getStock().containsKey(j)){
+                        int commande = commands.getStock().get(j);
+                        commands.getStock().put(j,++commande);
+                    } else {
+
+                        commands.getStock().put(j,1);
+                    }
                 }
 
 
