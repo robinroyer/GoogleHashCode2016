@@ -24,6 +24,9 @@ public class Commands {
     }
 
     public int getFirstProductId () {
+        if(this.stock.isEmpty()) {
+            return -1;
+        }
         int idProduct = this.stock.keySet().iterator().next();
         int quantity = this.stock.get(idProduct);
         if (quantity == 1) {
