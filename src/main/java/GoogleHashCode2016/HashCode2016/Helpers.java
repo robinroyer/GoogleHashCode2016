@@ -10,6 +10,7 @@ import static java.lang.Math.*;
 import static java.lang.Math.*;
 
 public class Helpers {
+	public static List<String> outputList;
 
     /**
      * retourne le temps que va prendre un drone à allez à un endroit
@@ -74,7 +75,18 @@ public class Helpers {
     }
 
     
-    public static String FlyAndLoadProductTo(Drone drone, Warehouse warehouse, Product product, int quqntity){return null;}
-    public static String FlyAndDeliverTo(Drone drone, Commands command, Product product){return null;}
+    public static void FlyAndLoadProductTo(Drone drone, Warehouse warehouse, Product product, int quantity){
+    	outputList += "" + drone.id + " L " + product.id + " " + warehouse.id + " " + quantity;
+    }
+    public static void FlyAndDeliverTo(Drone drone, Commands command, Product product, int quantity){
+    	outPutList+= "" + drone.id + " D " + command.id + " " + product.id + " " + quantity; 	
+    }
+    public static void wait(Drone drone, int turnsToWait){
+    	outPutList += "" + drone.id + " W " + turnsToWait; 
+    }
+    public static String getOutputStringList(){
+    	return outputList;
+    }
     
 }
+
