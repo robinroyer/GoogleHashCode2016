@@ -169,6 +169,7 @@ public class FileUtils2016 {
 
         for (int i = 0; i < drones; i++) {
             Drone drone = new Drone(i,warehouseArrayList.get(0).r,warehouseArrayList.get(0).c,max_weight_drone);
+            droneList.add(drone);
         }
 
     }
