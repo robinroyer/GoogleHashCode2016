@@ -11,8 +11,6 @@ import static java.lang.Math.*;
 
 public class Helpers {
 
-
-
     public static int getTime (int x1, int y1, int x2, int y2) {
         //
         double distance = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
@@ -38,5 +36,15 @@ public class Helpers {
             }
         }
         return freeDrone;
+    }
+
+    public static Product getProduit(List<Product> list, int idProduct)
+    {
+        for(Product p : list)
+        {
+            if(p.id == idProduct)
+                return p;
+        }
+        return null;
     }
 }

@@ -32,6 +32,9 @@ public class Drone {
         return time;
     }
 
+    /*
+    r et c la position de la commande
+     */
     public void addProductDelivery (Product product, int r, int c, List <Warehouse> warehouses) {
         Warehouse commandWarehouse;
         commandWarehouse = findWarehous(product, warehouses);
