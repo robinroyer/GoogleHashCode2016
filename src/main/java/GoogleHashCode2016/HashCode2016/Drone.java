@@ -3,7 +3,7 @@ package GoogleHashCode2016.HashCode2016;
 import java.util.ArrayList;
 import java.util.List;
 
-import static GoogleHashCode2016.HashCode2016.Helpers.getTime;
+import static GoogleHashCode2016.HashCode2016.Helpers.*;
 
 /**
  * Created by Lisa on 11/02/2016.
@@ -25,15 +25,19 @@ public class Drone {
         this.commands = new ArrayList<Commands>();
     }
 
-    public int goTo (int r, int c) {
+    private int goTo (int r, int c) {
         // return time fo travel to position
         int time = getTime(this.r, this.c, r, c);
         this.endWorkTime += time;
         return time;
     }
 
-    public void addCommand (Commands command) {
-        this.commands.add(command);
+    public void addProductDelivery (Product product, int r, int c, List <Warehouse> warehouses) {
+        Warehouse commandWarehouse;
+        commandWarehouse = findWarehous(product, warehouses);
+        int timeToWarehouse = getTime(this.r, this.c, commandWarehouse.r, commandWarehouse.c);
+        int timeToCommand = getTime(commandWarehouse.r, commandWarehouse.c, r, c);
+        this.endWorkTime += timeToWarehouse + timeToCommand;
     }
 
 
