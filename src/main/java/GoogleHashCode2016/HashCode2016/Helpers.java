@@ -72,4 +72,9 @@ public class Helpers {
         }
         return null;
     }
+
+    
+    public static String FlyAndLoadProductTo(Drone drone, Warehouse warehouse, Product product, int quqntity){return null;}
+    public static String FlyAndDeliverTo(Drone drone, Commands command, Product product){return null;}
+    
 }
