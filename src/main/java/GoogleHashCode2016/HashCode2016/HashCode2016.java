@@ -38,6 +38,8 @@ public class HashCode2016 {
         int stockSize = 0;
         for(Commands command : commandsList)
         {
+            if(command.id == 9)
+                System.out.println(command);
             System.out.println("Commande ID : " + command.id);
             productId = command.getFirstProductId();
             produit = Helpers.getProduit(productList, productId);

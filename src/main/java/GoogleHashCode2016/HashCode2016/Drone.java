@@ -53,6 +53,7 @@ public class Drone {
             int timeToCommand = getTime(commandWarehouse.r, commandWarehouse.c, command.r, command.c);
             Helpers.FlyAndLoadProductTo(this, commandWarehouse, product, 1);
             Helpers.FlyAndDeliverTo(this, command, product, 1);
+            System.out.println("C : " + command.id + " W : " + commandWarehouse.id + " P : " + product.id);
             this.endWorkTime += timeToWarehouse + timeToCommand;
         }
     }
