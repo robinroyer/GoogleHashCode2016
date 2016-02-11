@@ -1,6 +1,9 @@
 package GoogleHashCode2016.HashCode2016;
 
+import GoogleHashCode2016.PracticeProblem.PracticeProblem;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -168,6 +171,27 @@ public class FileUtils2016 {
             Drone drone = new Drone(i,warehouseArrayList.get(0).r,warehouseArrayList.get(0).c,max_weight_drone);
         }
 
+    }
+
+
+
+    /**
+     * Write a list of operations in the fileName
+     */
+    public void writeToFile(List<String> stringList) throws IOException {
+        Path path = Paths.get(outputFile);
+
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(path)) {
+
+            // write the number of operations
+            bufferedWriter.write(stringList.size());
+            bufferedWriter.write("\n");
+
+            for (String st : stringList) {
+                bufferedWriter.write(st);
+                bufferedWriter.write("\n");
+            }
+        }
     }
 
     public List<Drone> getDroneList() {
