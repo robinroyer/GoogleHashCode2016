@@ -14,7 +14,7 @@ public class Commands {
     public int r;
     public int c;
 
-
+    //Produit et nb de produit voulus
     public Map<Integer, Integer> stock = new HashMap<>();
 
     public Commands(int id, int r, int c){
@@ -27,4 +27,5 @@ public class Commands {
     public Map<Integer, Integer> getStock() {
         return stock;
     }
+
 }

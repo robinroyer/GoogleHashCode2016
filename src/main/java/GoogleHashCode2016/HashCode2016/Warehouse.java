@@ -45,5 +45,5 @@ public class Warehouse {
                 ", stock=" + stock +
                 '}';
     }
-    
+
 }
