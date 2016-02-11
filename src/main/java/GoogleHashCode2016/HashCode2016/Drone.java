@@ -44,17 +44,20 @@ public class Drone {
      * @param command la position de la commande
      * @param warehouses
      */
-    public void addProductDelivery (Product product, Commands command, List <Warehouse> warehouses) {
+    public void addProductDelivery (Product product, Commands command, List <Warehouse> warehouses, int maxTime) {
         Warehouse commandWarehouse;
         commandWarehouse = findWarehous(product, warehouses);
         if(commandWarehouse != null) {
-            commandWarehouse.removeProduct(product);
-            int timeToWarehouse = getTime(this.r, this.c, commandWarehouse.r, commandWarehouse.c);
-            int timeToCommand = getTime(commandWarehouse.r, commandWarehouse.c, command.r, command.c);
-            Helpers.FlyAndLoadProductTo(this, commandWarehouse, product, 1);
-            Helpers.FlyAndDeliverTo(this, command, product, 1);
-            System.out.println("C : " + command.id + " W : " + commandWarehouse.id + " P : " + product.id);
-            this.endWorkTime += timeToWarehouse + timeToCommand;
+            int timeToWarehouse = getTime(this.r, this.c, commandWarehouse.r, commandWarehouse.c)+1;
+            int timeToCommand = getTime(commandWarehouse.r, commandWarehouse.c, command.r, command.c)+1;
+            int newEndWorkTime = this.endWorkTime + timeToWarehouse+1 + timeToCommand+1;
+            if(newEndWorkTime + 1000 < maxTime) {
+                commandWarehouse.removeProduct(product);
+                Helpers.FlyAndLoadProductTo(this, commandWarehouse, product, 1);
+                Helpers.FlyAndDeliverTo(this, command, product, 1);
+                System.out.println("C : " + command.id + " W : " + commandWarehouse.id + " P : " + product.id);
+                this.endWorkTime += timeToWarehouse+1 + timeToCommand+1;
+            }
         }
     }
 

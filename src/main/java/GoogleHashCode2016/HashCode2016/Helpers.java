@@ -50,13 +50,13 @@ public class Helpers {
      * @param drones
      * @return
      */
-    public static Drone getFreeDrone (List <Drone> drones) {
-        int min = -1;
+    public static Drone getFreeDrone (List <Drone> drones, int maxTime) {
+        int minTime = maxTime;
         Drone freeDrone = null;
         for (Drone drone : drones) {
-            if(min == -1 || drone.endWorkTime<=min) {
+            if(drone.endWorkTime<=maxTime && drone.endWorkTime< minTime) {
                 freeDrone = drone;
-                min = drone.endWorkTime;
+                minTime = drone.endWorkTime;
             }
         }
         return freeDrone;

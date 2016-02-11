@@ -14,6 +14,9 @@ public class HashCode2016 {
     public static String BUSY_DAY_IN = "src/main/java/GoogleHashCode2016/HashCode2016/busy_day.in";
     public static String BUSY_DAY_OUT = "src/main/java/GoogleHashCode2016/HashCode2016/busy_day.out";
 
+    public static String REDUNDANCY_IN = "src/main/java/GoogleHashCode2016/HashCode2016/Redundancy.in";
+    public static String REDUNDANCY_OUT = "src/main/java/GoogleHashCode2016/HashCode2016/Redundancy.out";
+
 
     public static String MOHTER_IN = "src/main/java/GoogleHashCode2016/HashCode2016/mother_of_all_warehouses.in";
     public static String MOHTER_OU = "src/main/java/GoogleHashCode2016/HashCode2016/mother_of_all_warehouses.out";
@@ -21,7 +24,7 @@ public class HashCode2016 {
 
     public static void main(String [] args) throws IOException{
 
-        FileUtils2016 fileUtils2016 = new FileUtils2016(MOHTER_IN,MOHTER_OU);
+        FileUtils2016 fileUtils2016 = new FileUtils2016(REDUNDANCY_IN,REDUNDANCY_OUT);
 
         fileUtils2016.parseFile();
 
@@ -29,6 +32,8 @@ public class HashCode2016 {
         List<Drone> droneList = fileUtils2016.droneList;
         List<Commands> commandsList = fileUtils2016.commandsList;
         List<Product> productList = fileUtils2016.productList;
+        int maxTime = fileUtils2016.getTurns();
+        //int maxTime = 100000;
 
         Product produit;
         Drone drone;
@@ -38,27 +43,22 @@ public class HashCode2016 {
         int stockSize = 0;
         for(Commands command : commandsList)
         {
-            if(command.id == 9)
-                System.out.println(command);
-            System.out.println("Commande ID : " + command.id);
-            productId = command.getFirstProductId();
-            produit = Helpers.getProduit(productList, productId);
-
             while(command.hasProducts())
             {
-                drone = Helpers.getFreeDrone(droneList);
-
                 productId = command.getFirstProductId();
                 produit = Helpers.getProduit(productList, productId);
+                System.out.println(productId);
+                drone = Helpers.getFreeDrone(droneList, maxTime);
 
-                if(produit != null)
-                {
-                    drone.addProductDelivery(produit, command, warehousesList);
+                if(drone != null && produit != null) {
+                    drone.addProductDelivery(produit, command, warehousesList, maxTime);
                 }
-
             }
         }
-
+        System.out.println("MAX TIME : " + maxTime);
+        for(Drone enddrone : droneList) {
+            System.out.println(enddrone.endWorkTime);
+        }
         fileUtils2016.writeToFile(Helpers.getOutputStringList());
 
     }

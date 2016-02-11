@@ -146,7 +146,7 @@ public class FileUtils2016 {
 
                 roworder = Integer.parseInt(splitted_first[0]);
                 columOrder = Integer.parseInt(splitted_first[1]);
-                Commands commands = new Commands(i,roworder,columOrder);
+                Commands commands = new Commands(i,roworder,columOrder, max_weight_drone);
 
                 String second = bufferedReader.readLine();
                 int nb = Integer.parseInt(second);

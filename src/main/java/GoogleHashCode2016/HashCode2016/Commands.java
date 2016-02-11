@@ -36,7 +36,7 @@ public class Commands {
         if(this.stock.isEmpty()) {
             return -1;
         }
-
+        System.out.println(this.stock.keySet());
         int idProduct = this.stock.keySet().iterator().next();
         int quantity = this.stock.get(idProduct);
 
@@ -45,7 +45,7 @@ public class Commands {
         } else {
             this.stock.replace(idProduct, quantity - 1);
         }
-
+        System.out.println(idProduct);
         return idProduct;
     }
 
