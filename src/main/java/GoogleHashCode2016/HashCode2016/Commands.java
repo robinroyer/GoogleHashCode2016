@@ -13,7 +13,7 @@ public class Commands {
     public int r;
     public int c;
 
-    public ArrayList<Product> listProduct;
+    public ArrayList<Product> listProduct = new ArrayList<>();
 
     public Map<Integer, Integer> stock;
 
@@ -23,4 +23,8 @@ public class Commands {
         this.c = c;
     }
 
+
+    public ArrayList<Product> getListProduct() {
+        return listProduct;
+    }
 }

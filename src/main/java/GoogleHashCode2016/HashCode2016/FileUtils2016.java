@@ -38,6 +38,10 @@ public class FileUtils2016 {
 
     List<Warehouse> warehouseArrayList = new ArrayList<>();
 
+    List<Commands> commandsList = new ArrayList<>();
+
+    List<Product> productList = new ArrayList<>();
+
 
     public FileUtils2016(String inputFile, String outputFile) {
         this.inputFile = inputFile;
@@ -86,6 +90,11 @@ public class FileUtils2016 {
 
             for (int i = 0; i < id_products.length; i++) {
                 list_of_product_type.add(Integer.parseInt(id_products[i]));
+                Product product = new Product(i,Integer.parseInt(id_products[i]));
+
+
+                productList.add(product);
+
             }
 
 
@@ -123,11 +132,32 @@ public class FileUtils2016 {
 
             nb_orders = Integer.parseInt(current_line);
 
-            System.out.println(nb_orders);
+
 
 
             for (int i = 0; i < nb_orders; i++) {
                 String first = bufferedReader.readLine();
+                int roworder, columOrder;
+                String[] splitted_first = first.split(" ");
+
+                roworder = Integer.parseInt(splitted_first[0]);
+                columOrder = Integer.parseInt(splitted_first[1]);
+                Commands commands = new Commands(i,roworder,columOrder);
+
+                String second = bufferedReader.readLine();
+                int nb = Integer.parseInt(second);
+
+
+                String third = bufferedReader.readLine();
+                String[] thirs_splitted = third.split(" ");
+                for (int j = 0; j < nb; j++) {
+
+                }
+
+
+
+                commandsList.add(commands);
+
 
             }
 
