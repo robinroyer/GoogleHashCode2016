@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by haidara on 11/02/16.
@@ -26,8 +28,15 @@ public class FileUtils2016 {
 
     int payload;
 
+    List<Integer> list_of_product_type;
 
-    int product_type;
+    int nb_warehouse;
+
+
+    int nb_orders;
+
+
+    List<Warehouse> warehouseArrayList = new ArrayList<>();
 
 
 
@@ -63,6 +72,70 @@ public class FileUtils2016 {
             payload = Integer.parseInt(splited_string[4]);
 
 
+         /*   System.out.println(row);
+            System.out.println(columns);
+            System.out.println(drones);
+            System.out.println(turns);
+            System.out.println(payload); */
+
+
+            current_line = bufferedReader.readLine();
+
+            int nb_product = Integer.parseInt(current_line);
+
+            list_of_product_type = new ArrayList<>();
+
+            String[] id_products =  bufferedReader.readLine().split(" ");
+
+            for (int i = 0; i < id_products.length; i++) {
+                list_of_product_type.add(Integer.parseInt(id_products[i]));
+            }
+
+
+            current_line = bufferedReader.readLine();
+            nb_warehouse = Integer.parseInt(current_line);
+
+
+            for (int i = 0; i < nb_warehouse; i++) {
+                String first  = bufferedReader.readLine();
+                String[] first_splitted = first.split(" ");
+
+
+
+                int rowWareHouse = Integer.parseInt(first_splitted[0]);
+                int columWareHouse = Integer.parseInt(first_splitted[1]);
+                Warehouse warehouse = new Warehouse(i,rowWareHouse,columWareHouse);
+
+                List<Integer> dispo_produit = new ArrayList<>();
+
+                String second = bufferedReader.readLine();
+
+               // System.out.println(second);
+
+                String [] second_splitted = second.split(" ");
+
+                for (int j = 0; j < second_splitted.length; j++) {
+                    warehouse.setProductStock(i,Integer.parseInt(second_splitted[i]));
+                }
+
+                                warehouseArrayList.add(warehouse);
+
+            }
+
+
+
+            current_line = bufferedReader.readLine();
+
+            nb_orders= Integer.parseInt(current_line);
+
+            System.out.println(nb_orders);
+
+
+
+            for (int i = 0; i < nb_orders; i++) {
+                String first = bufferedReader.readLine();
+
+            }
 
 
 
