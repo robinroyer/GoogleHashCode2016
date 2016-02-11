@@ -22,12 +22,12 @@ public class Warehouse {
         stock.put(idProduct, quantity);
     }
 
-    public void removeXProduct (int idProduct, int quantity) {
+    public void removeProductQuantity (int idProduct, int quantity) {
         int oldQuantity = stock.get(idProduct);
         stock.put(idProduct, oldQuantity-quantity);
     }
 
-    public int getProdutQuantity (int idProduct) {
+    public int getProductQuantity (int idProduct) {
         return stock.get(idProduct);
     }
 }
