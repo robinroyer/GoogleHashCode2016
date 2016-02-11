@@ -30,5 +30,6 @@ public class Main {
                 drone.addProductDelivery(produit, command.r, command.c, f.getWarehouseArrayList());
             }
         }
+        //TODO: Generate output file
     }
 }

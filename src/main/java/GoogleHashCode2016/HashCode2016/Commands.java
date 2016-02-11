@@ -2,6 +2,7 @@ package GoogleHashCode2016.HashCode2016;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,13 +15,16 @@ public class Commands {
     public int r;
     public int c;
 
+    public int maxWeight;
+
     //Produit et nb de produit voulus
     public Map<Integer, Integer> stock = new HashMap<>();
 
-    public Commands(int id, int r, int c){
+    public Commands(int id, int r, int c, int maxWeight){
         this.id = id;
         this.r = r;
         this.c = c;
+        this.maxWeight = maxWeight;
     }
 
     /**
@@ -41,6 +45,24 @@ public class Commands {
         }
         return idProduct;
     }
+
+    public List<Product> getBestLoading () {
+        int maxWeight = Helpers.sumWeight(this.stock)
+        if (Helpers.sumWeight(this.stock) < this.maxWeight) {
+            return Helpers.stockToProductsList(stock);
+        }
+        else {
+            return getBetterProductCombinaison(this.stock, null, );
+        }
+
+        return null;
+    }
+
+    public List<Product> getBetterProductCombinaison(Map<Integer, Integer> stock, Map<Integer, Integer> betterCombinaison, int minWeight) {
+        for()
+        return null;
+    }
+
 
     /**
      * retourne la stock de toutes la commande

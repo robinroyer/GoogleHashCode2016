@@ -47,8 +47,12 @@ public class Drone {
     public void addProductDelivery (Product product, int r, int c, List <Warehouse> warehouses) {
         Warehouse commandWarehouse;
         commandWarehouse = findWarehous(product, warehouses);
-        int timeToWarehouse = getTime(this.r, this.c, commandWarehouse.r, commandWarehouse.c);
-        int timeToCommand = getTime(commandWarehouse.r, commandWarehouse.c, r, c);
+        // +1 because it takes to to load the product
+        int timeToWarehouse = getTime(this.r, this.c, commandWarehouse.r, commandWarehouse.c)+1;
+        // +1 because it takes to to unload the product
+        int timeToCommand = getTime(commandWarehouse.r, commandWarehouse.c, r, c)+1;
+        //GOTOWAREHOUSE&PICKOBJECTWAREHOUSE
+        //GOTOCLIENT&PUSHPRODUCT
         this.endWorkTime += timeToWarehouse + timeToCommand;
     }
 
