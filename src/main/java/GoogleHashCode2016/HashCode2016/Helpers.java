@@ -1,5 +1,9 @@
 package GoogleHashCode2016.HashCode2016;
 
+import java.util.List;
+
+import static java.lang.Math.*;
+
 /**
  * Created by haidara on 11/02/16.
  */

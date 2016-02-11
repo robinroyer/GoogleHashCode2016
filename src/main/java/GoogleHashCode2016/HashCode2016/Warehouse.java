@@ -31,4 +31,9 @@ public class Warehouse {
     public int getProductQuantity (int idProduct) {
         return stock.get(idProduct);
     }
+
+    public boolean hasProduct(Product p)
+    {
+        return (stock.get(p.id) != null);
+    }
 }

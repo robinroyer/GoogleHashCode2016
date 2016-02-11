@@ -9,12 +9,12 @@ import static GoogleHashCode2016.HashCode2016.Helpers.getTime;
  * Created by Lisa on 11/02/2016.
  */
 public class Drone {
-    int id;
-    int r;
-    int c;
-    int maxWeight;
-    int endWorkTime;
-    List <Commands> commands;
+    public int id;
+    public int r;
+    public int c;
+    public int maxWeight;
+    public int endWorkTime;
+    public List <Commands> commands;
 
     public Drone(int id, int r, int c, int maxWeight) {
         this.id = id;
