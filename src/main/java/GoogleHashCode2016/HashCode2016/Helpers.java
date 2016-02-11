@@ -113,12 +113,12 @@ public class Helpers {
     }
     
     public static void FlyAndLoadProductTo(Drone drone, Warehouse warehouse, Product product, int quantity){
-    	outputList.add( "" + drone.id + " L " + product.id + " " + warehouse.id + " " + quantity);
-        //System.out.println("" + drone.id + " L " + product.id + " " + warehouse.id + " " + quantity);
+    	outputList.add( "" + drone.id + " L " + warehouse.id + " " + product.id + " " + quantity);
+        System.out.println("" + drone.id + " L " + warehouse.id + " " + product.id + " " + quantity);
     }
     public static void FlyAndDeliverTo(Drone drone, Commands command, Product product, int quantity){
         outputList.add( "" + drone.id + " D " + command.id + " " + product.id + " " + quantity);
-        //System.out.println("" + drone.id + " D " + command.id + " " + product.id + " " + quantity);
+        System.out.println("" + drone.id + " D " + command.id + " " + product.id + " " + quantity);
 
     }
     public static void wait(Drone drone, int turnsToWait){

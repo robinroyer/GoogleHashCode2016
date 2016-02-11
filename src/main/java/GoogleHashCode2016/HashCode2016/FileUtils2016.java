@@ -157,7 +157,7 @@ public class FileUtils2016 {
                 for (int j = 0; j < nb; j++) {
                     if(commands.getStock().containsKey(Integer.parseInt(thirs_splitted[j]))){
                         int commande = commands.getStock().get(Integer.parseInt(thirs_splitted[j]));
-                        commands.getStock().put(j,++commande);
+                        commands.getStock().put(Integer.parseInt(thirs_splitted[j]),commande+1);
                     } else {
                         commands.getStock().put(Integer.parseInt(thirs_splitted[j]),1);
                     }

@@ -38,8 +38,11 @@ public class HashCode2016 {
         int stockSize = 0;
         for(Commands command : commandsList)
         {
-            commandesTraitee++;
-            System.out.println(commandesTraitee + " " + commandsList.size() + " " + command.getStock().size());
+            if(command.id == 9)
+                System.out.println(command);
+            System.out.println("Commande ID : " + command.id);
+            productId = command.getFirstProductId();
+            produit = Helpers.getProduit(productList, productId);
 
             while(command.hasProducts())
             {
@@ -53,11 +56,7 @@ public class HashCode2016 {
                     drone.addProductDelivery(produit, command, warehousesList);
                 }
 
-                if(command.getStock().size() == 1)
-                    System.out.println("coucou");
             }
-            if(commandesTraitee == 393)
-                System.out.println("coucou");
         }
 
         fileUtils2016.writeToFile(Helpers.getOutputStringList());

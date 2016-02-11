@@ -33,17 +33,14 @@ public class Warehouse {
     }
 
     public boolean hasProduct(Product p) {
-        return (stock.get(p.id) != null);
+        System.out.println("P.ID" + p.id);
+        return ((stock.get(p.id) != null) && (stock.get(p.id) > 0));
     }
 
     public void removeProduct(Product p) {
         int idProduct = p.id;
         int quantity = this.stock.get(idProduct);
-        if (quantity == 1) {
-            this.stock.remove(idProduct);
-        } else {
-            this.stock.replace(idProduct, quantity - 1);
-        }
+        this.stock.replace(idProduct, quantity - 1);
     }
 
     @Override
