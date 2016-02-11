@@ -49,6 +49,8 @@ public class Drone {
 
         commandWarehouse = findWarehous(product, warehouses);
 
+        commandWarehouse.removeProduct(product);
+
         Helpers.FlyAndLoadProductTo(this, commandWarehouse, product, 1);
         Helpers.FlyAndDeliverTo(this, command, product, 1);
 
