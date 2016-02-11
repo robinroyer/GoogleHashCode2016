@@ -151,7 +151,7 @@ public class FileUtils2016 {
                 String third = bufferedReader.readLine();
                 String[] thirs_splitted = third.split(" ");
                 for (int j = 0; j < nb; j++) {
-
+                    commands.getListProduct().add(productList.get(j));
                 }
 
 
