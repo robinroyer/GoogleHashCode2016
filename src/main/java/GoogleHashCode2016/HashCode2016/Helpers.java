@@ -116,10 +116,10 @@ public class Helpers {
     	outputList.add( "" + drone.id + " L " + product.id + " " + warehouse.id + " " + quantity);
     }
     public static void FlyAndDeliverTo(Drone drone, Commands command, Product product, int quantity){
-    	outPutList.add( "" + drone.id + " D " + command.id + " " + product.id + " " + quantity); 	
+        outputList.add( "" + drone.id + " D " + command.id + " " + product.id + " " + quantity);
     }
     public static void wait(Drone drone, int turnsToWait){
-    	outPutList.add( "" + drone.id + " W " + turnsToWait); 
+        outputList.add( "" + drone.id + " W " + turnsToWait);
     }
     public static List<String> getOutputStringList(){
     	return outputList;
