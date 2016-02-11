@@ -32,13 +32,12 @@ public class Drone {
         return time;
     }
 
-    public void addCommand (Commands command, List <Warehouse> warehouses) {
-        List <Warehouse> commandWarehouses = new ArrayList<Warehouse>();
-        for(Product p : command.getListProduct()) {
-            commandWarehouses.add(findWarehous(p, warehouses));
-        }
-        int time = getTime(this.r, this.c, command.r, command.c);
-        this.commands.add(command);
+    public void addProductDelivery (Product product, int r, int c, List <Warehouse> warehouses) {
+        Warehouse commandWarehouse;
+        commandWarehouse = findWarehous(product, warehouses);
+        int timeToWarehouse = getTime(this.r, this.c, commandWarehouse.r, commandWarehouse.c);
+        int timeToCommand = getTime(commandWarehouse.r, commandWarehouse.c, r, c);
+        this.endWorkTime += timeToWarehouse + timeToCommand;
     }
 
 
