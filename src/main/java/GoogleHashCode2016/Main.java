@@ -5,6 +5,10 @@ import GoogleHashCode2016.HashCode2016.*;
 
 public class Main {
 
+    /**
+     * Boucle principale
+     * @param args
+     */
     public static void main(String []args){
         System.out.println("Hash-Rocket");
 

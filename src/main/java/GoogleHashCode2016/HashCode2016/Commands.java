@@ -23,6 +23,11 @@ public class Commands {
         this.c = c;
     }
 
+    /**
+     * Récupère le premier produit de la commande et le retourne
+     * décrémente la quantité de ce produit dans  la commmande
+     * @return
+     */
     public int getFirstProductId () {
         if(this.stock.isEmpty()) {
             return -1;
@@ -37,7 +42,10 @@ public class Commands {
         return idProduct;
     }
 
-
+    /**
+     * retourne la stock de toutes la commande
+     * @return
+     */
     public Map<Integer, Integer> getStock() {
         return stock;
     }
