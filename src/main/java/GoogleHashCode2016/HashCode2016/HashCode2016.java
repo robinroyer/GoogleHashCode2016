@@ -28,7 +28,7 @@ public class HashCode2016 {
         fileUtils2016.parseFile();
 
 
-
+        System.out.println(fileUtils2016.getWarehouseArrayList());
 
 
 

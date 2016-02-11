@@ -111,15 +111,14 @@ public class FileUtils2016 {
                 int columWareHouse = Integer.parseInt(first_splitted[1]);
                 Warehouse warehouse = new Warehouse(i, rowWareHouse, columWareHouse);
 
-                List<Integer> dispo_produit = new ArrayList<>();
 
                 String second = bufferedReader.readLine();
 
-
                 String[] second_splitted = second.split(" ");
 
+
                 for (int j = 0; j < second_splitted.length; j++) {
-                    warehouse.setProductStock(i, Integer.parseInt(second_splitted[i]));
+                    warehouse.setProductStock(j, Integer.parseInt(second_splitted[j]));
                 }
 
                 warehouseArrayList.add(warehouse);
@@ -162,5 +161,50 @@ public class FileUtils2016 {
 
 
         }
+    }
+
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public int getDrones() {
+        return drones;
+    }
+
+    public int getTurns() {
+        return turns;
+    }
+
+    public int getPayload() {
+        return payload;
+    }
+
+    public List<Integer> getList_of_product_type() {
+        return list_of_product_type;
+    }
+
+    public int getNb_warehouse() {
+        return nb_warehouse;
+    }
+
+    public int getNb_orders() {
+        return nb_orders;
+    }
+
+    public List<Warehouse> getWarehouseArrayList() {
+        return warehouseArrayList;
+    }
+
+    public List<Commands> getCommandsList() {
+        return commandsList;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
     }
 }

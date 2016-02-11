@@ -31,4 +31,15 @@ public class Warehouse {
     public int getProductQuantity (int idProduct) {
         return stock.get(idProduct);
     }
+
+
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "id=" + id +
+                ", r=" + r +
+                ", c=" + c +
+                ", stock=" + stock +
+                '}';
+    }
 }
