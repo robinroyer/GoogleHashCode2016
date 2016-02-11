@@ -49,20 +49,18 @@ public class Commands {
         return idProduct;
     }
 
-    public List<Product> getBestLoading () {
-        int maxWeight = Helpers.sumWeight(this.stock)
-        if (Helpers.sumWeight(this.stock) < this.maxWeight) {
-            return Helpers.stockToProductsList(stock);
+    public List<Product> getBestLoading (List<Product> products) {
+        int maxWeight = Helpers.sumWeight(this.stock, products);
+        if (maxWeight < this.maxWeight) {
+            return Helpers.stockToProductList(this.stock, products);
         }
         else {
-            return getBetterProductCombinaison(this.stock, null, );
+            return getBetterProductCombinaison(this.stock, null, maxWeight);
         }
-
-        return null;
     }
 
     public List<Product> getBetterProductCombinaison(Map<Integer, Integer> stock, Map<Integer, Integer> betterCombinaison, int minWeight) {
-        for()
+        //for()
         return null;
     }
 

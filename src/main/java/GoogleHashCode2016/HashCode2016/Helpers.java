@@ -81,16 +81,16 @@ public class Helpers {
     /**
      * retourne la liste de tout les produits d'un stock
      * @param stock
-     * @param f
+     * @param allProducts List of all the products
      * @return
      */
-    public static List<Product> stockToProductList(Map<Integer, Integer> stock, FileUtils2016 f)
+    public static List<Product> stockToProductList(Map<Integer, Integer> stock, List<Product> allProducts)
     {
         List<Product> products = new ArrayList<>();
 
         for(int id : stock.keySet())
         {
-            products.add(getProduit(f.getProductList(), id));
+            products.add(getProduit(allProducts, id));
         }
 
         return products;
@@ -98,13 +98,13 @@ public class Helpers {
     /**
      * retourne le poid total du stock
      * @param stock
-     * @param f
+     * @param products List of products
      * @return
      */
-    public static int sumWeight(Map<Integer, Integer> stock, FileUtils2016 f)
+    public static int sumWeight(Map<Integer, Integer> stock, List<Product> products)
     {
         int sumWeight = 0;
-        for(Product produit : stockToProductList(stock,  f))
+        for(Product produit : products)
         {
             sumWeight += produit.weight;
         }
