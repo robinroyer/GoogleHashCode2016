@@ -36,13 +36,16 @@ public class Commands {
         if(this.stock.isEmpty()) {
             return -1;
         }
+
         int idProduct = this.stock.keySet().iterator().next();
         int quantity = this.stock.get(idProduct);
+
         if (quantity == 1) {
             this.stock.remove(idProduct);
         } else {
             this.stock.replace(idProduct, quantity - 1);
         }
+
         return idProduct;
     }
 
@@ -72,4 +75,7 @@ public class Commands {
         return stock;
     }
 
+    public boolean hasProducts() {
+        return !this.stock.isEmpty();
+    }
 }

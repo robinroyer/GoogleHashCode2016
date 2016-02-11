@@ -155,7 +155,12 @@ public class FileUtils2016 {
                 String third = bufferedReader.readLine();
                 String[] thirs_splitted = third.split(" ");
                 for (int j = 0; j < nb; j++) {
-                    commands.getStock().put(j,Integer.parseInt(thirs_splitted[j]));
+                    if(commands.getStock().containsKey(Integer.parseInt(thirs_splitted[j]))){
+                        int commande = commands.getStock().get(Integer.parseInt(thirs_splitted[j]));
+                        commands.getStock().put(j,++commande);
+                    } else {
+                        commands.getStock().put(Integer.parseInt(thirs_splitted[j]),1);
+                    }
                 }
 
 
@@ -169,6 +174,7 @@ public class FileUtils2016 {
 
         for (int i = 0; i < drones; i++) {
             Drone drone = new Drone(i,warehouseArrayList.get(0).r,warehouseArrayList.get(0).c,max_weight_drone);
+            droneList.add(drone);
         }
 
     }
@@ -184,7 +190,7 @@ public class FileUtils2016 {
         try (BufferedWriter bufferedWriter = Files.newBufferedWriter(path)) {
 
             // write the number of operations
-            bufferedWriter.write(stringList.size());
+            bufferedWriter.write(String.valueOf(stringList.size()));
             bufferedWriter.write("\n");
 
             for (String st : stringList) {

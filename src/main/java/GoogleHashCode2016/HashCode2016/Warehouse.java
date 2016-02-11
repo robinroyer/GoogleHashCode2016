@@ -36,6 +36,16 @@ public class Warehouse {
         return (stock.get(p.id) != null);
     }
 
+    public void removeProduct(Product p) {
+        int idProduct = p.id;
+        int quantity = this.stock.get(idProduct);
+        if (quantity == 1) {
+            this.stock.remove(idProduct);
+        } else {
+            this.stock.replace(idProduct, quantity - 1);
+        }
+    }
+
     @Override
     public String toString() {
         return "Warehouse{" +
