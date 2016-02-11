@@ -3,6 +3,7 @@ package GoogleHashCode2016.HashCode2016;
 import GoogleHashCode2016.PracticeProblem.FileUtils;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by haidara on 11/02/16.
@@ -26,6 +27,14 @@ public class HashCode2016 {
         FileUtils2016 fileUtils2016 = new FileUtils2016(BUSY_DAY_IN,BUSY_DAY_OUT);
 
         fileUtils2016.parseFile();
+
+        List<Warehouse> warehousesList = fileUtils2016.warehouseArrayList;
+        List<Drone> droneList = fileUtils2016.droneList;
+        List<Commands> commandsList = fileUtils2016.commandsList;
+        List<Product> productList = fileUtils2016.productList;
+
+
+
 
 
 
