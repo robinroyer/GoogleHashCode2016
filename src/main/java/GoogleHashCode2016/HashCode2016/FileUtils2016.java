@@ -185,7 +185,7 @@ public class FileUtils2016 {
         try (BufferedWriter bufferedWriter = Files.newBufferedWriter(path)) {
 
             // write the number of operations
-            bufferedWriter.write(stringList.size());
+            bufferedWriter.write(String.valueOf(stringList.size()));
             bufferedWriter.write("\n");
 
             for (String st : stringList) {
