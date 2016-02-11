@@ -27,4 +27,16 @@ public class Helpers {
         }
         return null;
     }
+
+    public static Drone getFreeDrone (List <Drone> drones) {
+        int min = -1;
+        Drone freeDrone = null;
+        for (Drone drone : drones) {
+            if(min == -1 || drone.endWorkTime<=min) {
+                freeDrone = drone;
+                min = drone.endWorkTime;
+            }
+        }
+        return freeDrone;
+    }
 }
