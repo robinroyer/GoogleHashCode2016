@@ -46,11 +46,14 @@ public class Drone {
      */
     public void addProductDelivery (Product product, Commands command, List <Warehouse> warehouses) {
         Warehouse commandWarehouse;
+
         commandWarehouse = findWarehous(product, warehouses);
-        int timeToWarehouse = getTime(this.r, this.c, commandWarehouse.r, commandWarehouse.c);
-        int timeToCommand = getTime(commandWarehouse.r, commandWarehouse.c, command.r, command.c);
+
         Helpers.FlyAndLoadProductTo(this, commandWarehouse, product, 1);
         Helpers.FlyAndDeliverTo(this, command, product, 1);
+
+        int timeToWarehouse = getTime(this.r, this.c, commandWarehouse.r, commandWarehouse.c);
+        int timeToCommand = getTime(commandWarehouse.r, commandWarehouse.c, command.r, command.c);
         this.endWorkTime += timeToWarehouse + timeToCommand;
     }
 

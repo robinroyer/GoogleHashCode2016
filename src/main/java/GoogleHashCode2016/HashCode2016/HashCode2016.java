@@ -19,12 +19,9 @@ public class HashCode2016 {
     public static String MOHTER_OU = "src/main/java/GoogleHashCode2016/HashCode2016/mother_of_all_warehouses.out";
 
 
-
-
-
     public static void main(String [] args) throws IOException{
 
-        FileUtils2016 fileUtils2016 = new FileUtils2016(BUSY_DAY_IN,BUSY_DAY_OUT);
+        FileUtils2016 fileUtils2016 = new FileUtils2016(MOHTER_IN,MOHTER_OU);
 
         fileUtils2016.parseFile();
 
@@ -37,17 +34,30 @@ public class HashCode2016 {
         Drone drone;
         int productId;
 
+        int commandesTraitee = 0;
+        int stockSize = 0;
         for(Commands command : commandsList)
         {
-            drone = Helpers.getFreeDrone(droneList);
+            commandesTraitee++;
+            System.out.println(commandesTraitee + " " + commandsList.size() + " " + command.getStock().size());
 
-            productId = command.getFirstProductId();
-            produit = Helpers.getProduit(productList, productId);
-
-            if(produit != null)
+            while(command.hasProducts())
             {
-                drone.addProductDelivery(produit, command, warehousesList);
+                drone = Helpers.getFreeDrone(droneList);
+
+                productId = command.getFirstProductId();
+                produit = Helpers.getProduit(productList, productId);
+
+                if(produit != null)
+                {
+                    drone.addProductDelivery(produit, command, warehousesList);
+                }
+
+                if(command.getStock().size() == 1)
+                    System.out.println("coucou");
             }
+            if(commandesTraitee == 393)
+                System.out.println("coucou");
         }
 
         fileUtils2016.writeToFile(Helpers.getOutputStringList());
