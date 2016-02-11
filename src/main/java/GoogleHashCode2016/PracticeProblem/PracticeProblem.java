@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- *
+ * C'est une classe
  */
 public class PracticeProblem {
     public static final Character NEED_TO_BE_PAINT = '#';
@@ -86,20 +86,20 @@ public class PracticeProblem {
         List<Operation> operationsToRemove = new ArrayList<>();
         
         // peuplate paintSquareList
-        for (int i = 0; i < list.size(); i++) {
-			if (list.get(i) instanceof PaintSquare) {
-				paintSquareList.add((PaintSquare)list.get(i));
-			}
-		}
+        for (Operation aList : list) {
+            if (aList instanceof PaintSquare) {
+                paintSquareList.add((PaintSquare) aList);
+            }
+        }
 
         for (int i = 0; i < paintSquareList.size() - 1; i++) {
-            PaintSquare paintSquare = (PaintSquare) paintSquareList.get(i);
+            PaintSquare paintSquare = paintSquareList.get(i);
             PaintSquare previous = paintSquare;
             List<Operation> currentOperationToRemove = new ArrayList<>();
             
             // add all the squares below to paintSquare to currentOperationToRemove
             for (int j = i+1; j < paintSquareList.size()-1; j++) {
-                PaintSquare paintSquare2 = (PaintSquare) paintSquareList.get(j);
+                PaintSquare paintSquare2 = paintSquareList.get(j);
                 if (paintSquare.getC() == paintSquare2.getC() && paintSquare2.getR() == previous.getR()+1){
                     currentOperationToRemove.add(paintSquare2);
                     previous =  paintSquare2;
