@@ -84,7 +84,7 @@ public class Helpers {
     public static void wait(Drone drone, int turnsToWait){
     	outPutList += "" + drone.id + " W " + turnsToWait; 
     }
-    public static String getOutputStringList(){
+    public static List<String> getOutputStringList(){
     	return outputList;
     }
     
