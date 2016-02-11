@@ -26,11 +26,14 @@ public class FileUtils2016 {
 
     int turns;
 
-    int payload;
+    int max_weight_drone;
 
     List<Integer> list_of_product_type;
 
     int nb_warehouse;
+
+    List<Drone> droneList = new ArrayList<>();
+
 
 
     int nb_orders;
@@ -70,14 +73,14 @@ public class FileUtils2016 {
             drones = Integer.parseInt(splited_string[2]);
             turns = Integer.parseInt(splited_string[3]);
 
-            payload = Integer.parseInt(splited_string[4]);
+            max_weight_drone = Integer.parseInt(splited_string[4]);
 
 
          /*   System.out.println(row);
             System.out.println(columns);
             System.out.println(drones);
             System.out.println(turns);
-            System.out.println(payload); */
+            System.out.println(max_weight_drone); */
 
 
             current_line = bufferedReader.readLine();
@@ -158,11 +161,18 @@ public class FileUtils2016 {
 
 
             }
-
-
         }
+
+
+        for (int i = 0; i < drones; i++) {
+            Drone drone = new Drone(i,warehouseArrayList.get(0).r,warehouseArrayList.get(0).c,max_weight_drone);
+        }
+
     }
 
+    public List<Drone> getDroneList() {
+        return droneList;
+    }
 
     public int getRow() {
         return row;
@@ -180,8 +190,8 @@ public class FileUtils2016 {
         return turns;
     }
 
-    public int getPayload() {
-        return payload;
+    public int getMax_weight_drone() {
+        return max_weight_drone;
     }
 
     public List<Integer> getList_of_product_type() {
