@@ -194,6 +194,7 @@ public class FileUtils2016 {
             bufferedWriter.write("\n");
 
             for (String st : stringList) {
+                System.out.println("IIICCCCIIIII");
                 bufferedWriter.write(st);
                 bufferedWriter.write("\n");
             }

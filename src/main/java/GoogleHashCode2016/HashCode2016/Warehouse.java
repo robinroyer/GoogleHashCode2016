@@ -40,9 +40,7 @@ public class Warehouse {
     public void removeProduct(Product p) {
         int idProduct = p.id;
         int quantity = this.stock.get(idProduct);
-        System.out.println("W" + this.id + "P" + idProduct + "S" + this.stock.get(idProduct));
         this.stock.replace(idProduct, quantity - 1);
-        System.out.println("W" + this.id + "P" + idProduct + "S" + this.stock.get(idProduct));
     }
 
     @Override
