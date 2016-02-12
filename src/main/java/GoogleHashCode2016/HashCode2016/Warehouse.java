@@ -33,7 +33,6 @@ public class Warehouse {
     }
 
     public boolean hasProduct(Product p) {
-        System.out.println("P.ID" + p.id);
         return ((stock.get(p.id) != null) && (stock.get(p.id) > 0));
     }
 

@@ -1,9 +1,6 @@
 package GoogleHashCode2016.HashCode2016;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Lisa on 11/02/2016.
@@ -36,7 +33,6 @@ public class Commands {
         if(this.stock.isEmpty()) {
             return -1;
         }
-        System.out.println(this.stock.keySet());
         int idProduct = this.stock.keySet().iterator().next();
         int quantity = this.stock.get(idProduct);
 
@@ -45,23 +41,51 @@ public class Commands {
         } else {
             this.stock.replace(idProduct, quantity - 1);
         }
-        System.out.println(idProduct);
         return idProduct;
     }
 
+    private void removeProduct(int idProduct) {
+        if(this.stock.isEmpty()) {
+            return;
+        }
+        int quantity = this.stock.get(idProduct);
+
+        if (quantity == 1) {
+            this.stock.remove(idProduct);
+        } else {
+            this.stock.replace(idProduct, quantity - 1);
+        }
+        return;
+    }
+
     public List<Product> getBestLoading (List<Product> products) {
-        int maxWeight = Helpers.sumWeight(this.stock, products);
-        if (maxWeight < this.maxWeight) {
+        int CommandWeight = Helpers.sumWeight(this.stock, products);
+        if (CommandWeight < this.maxWeight) {
+            this.stock.clear();
             return Helpers.stockToProductList(this.stock, products);
         }
         else {
-            return getBetterProductCombinaison(this.stock, null, maxWeight);
+            return getBetterProductCombinaison(products);
         }
     }
 
-    public List<Product> getBetterProductCombinaison(Map<Integer, Integer> stock, Map<Integer, Integer> betterCombinaison, int minWeight) {
-        //for()
-        return null;
+    private List<Product> getBetterProductCombinaison(List<Product> products) {
+        List<Product> productList = new ArrayList<>();
+        int weight = 0;
+        Iterator it = this.stock.keySet().iterator();
+        while (weight < this.maxWeight && it.hasNext()) {
+            int idProduct = (int) it.next();
+            Product product = Helpers.getProduit(products, idProduct);
+            if(weight+product.weight < this.maxWeight) {
+                weight +=product.weight;
+                productList.add(product);
+            }
+        }
+        for(Product productToRemove : productList) {
+            this.removeProduct(productToRemove.id);
+        }
+        System.out.println("W : " + weight + " / MAX : " + maxWeight);
+        return productList;
     }
 
 

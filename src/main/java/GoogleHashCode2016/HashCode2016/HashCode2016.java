@@ -33,9 +33,9 @@ public class HashCode2016 {
         List<Commands> commandsList = fileUtils2016.commandsList;
         List<Product> productList = fileUtils2016.productList;
         int maxTime = fileUtils2016.getTurns();
-        //int maxTime = 100000;
 
-        Product produit;
+        //Product produit;
+        List<Product> products;
         Drone drone;
         int productId;
 
@@ -45,19 +45,22 @@ public class HashCode2016 {
         {
             while(command.hasProducts())
             {
-                productId = command.getFirstProductId();
-                produit = Helpers.getProduit(productList, productId);
-                System.out.println(productId);
+                //productId = command.getFirstProductId();
+                products = command.getBestLoading(productList);
+                //System.out.println(products);
+                //produit = Helpers.getProduit(productList, productId);
+                //System.out.println(productId);
                 drone = Helpers.getFreeDrone(droneList, maxTime);
 
-                if(drone != null && produit != null) {
-                    drone.addProductDelivery(produit, command, warehousesList, maxTime);
+                if(drone != null && !products.isEmpty()) {
+                    drone.addProductsForDelivery(products, warehousesList, maxTime);
+                    drone.processDelivery(command, products, maxTime);
                 }
             }
         }
-        System.out.println("MAX TIME : " + maxTime);
-        for(Drone enddrone : droneList) {
-            System.out.println(enddrone.endWorkTime);
+        for (Drone endDrone : droneList) {
+            if(endDrone.endWorkTime > maxTime)
+            System.err.println(endDrone.endWorkTime);
         }
         fileUtils2016.writeToFile(Helpers.getOutputStringList());
 
