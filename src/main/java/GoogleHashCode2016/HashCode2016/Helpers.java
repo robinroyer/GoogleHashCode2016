@@ -45,6 +45,19 @@ public class Helpers {
         return null;
     }
 
+    public static Warehouse findBestWarehouse (Product p, List<Warehouse>warehouses, int rDrone, int cDrone) {
+        int distanceMin = 2147483647;
+        Warehouse closestWarehouse = null;
+        for (Warehouse warehouse : warehouses) {
+            int distance = getTime(rDrone, cDrone, warehouse.r, warehouse.c);
+            if(warehouse.hasProduct(p) && distance < distanceMin) {
+                distanceMin = distance;
+                closestWarehouse = warehouse;
+            }
+        }
+        return closestWarehouse;
+    }
+
     /**
      * retourne le premier drones libre
      * @param drones

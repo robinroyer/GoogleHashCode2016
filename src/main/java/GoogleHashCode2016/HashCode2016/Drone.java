@@ -64,7 +64,7 @@ public class Drone {
     public void addProductsForDelivery (List<Product> products, List <Warehouse> warehouses, int maxTime) {
         for(Product product : products) {
             Warehouse commandWarehouse;
-            commandWarehouse = findWarehous(product, warehouses);
+            commandWarehouse = findBestWarehouse(product, warehouses, this.r, this.c);
             if(commandWarehouse != null) {
                 int timeToWarehouse = getTime(this.r, this.c, commandWarehouse.r, commandWarehouse.c)+1;
                 int newEndWorkTime = this.endWorkTime + timeToWarehouse;
