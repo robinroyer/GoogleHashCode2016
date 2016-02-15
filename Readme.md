@@ -5,7 +5,7 @@ Our code for Google Hash Code 2016.
 
 The repository also contains the practice problem, **Painting**. 
 
-**Score in Hash Code 2016 (extended run) : 255642 ** 
+**Score in Hash Code 2016 (extended run) : 255642** 
 
 ## Contributors
  * Robin Royer [@robinroyer](https://github.com/robinroyer)
