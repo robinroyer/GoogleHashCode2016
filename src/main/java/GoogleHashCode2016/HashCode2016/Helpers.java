@@ -2,9 +2,8 @@ package GoogleHashCode2016.HashCode2016;
 
 import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Field;
+import java.util.*;
 
 import static java.lang.Math.*;
 
@@ -103,9 +102,10 @@ public class Helpers {
 
         for(int id : stock.keySet())
         {
-            products.add(getProduit(allProducts, id));
+            for(int i=0; i < stock.get(id); i++) {
+                products.add(getProduit(allProducts, id));
+            }
         }
-
         return products;
     }
     /**
@@ -117,21 +117,22 @@ public class Helpers {
     public static int sumWeight(Map<Integer, Integer> stock, List<Product> products)
     {
         int sumWeight = 0;
-        for(Product produit : products)
-        {
-            sumWeight += produit.weight;
+        Iterator it = stock.keySet().iterator();
+        while(it.hasNext()) {
+            int productId = (int) it.next();
+            Product product = getProduit(products, productId);
+            sumWeight += product.weight;
         }
-
         return sumWeight;
     }
     
     public static void FlyAndLoadProductTo(Drone drone, Warehouse warehouse, Product product, int quantity){
     	outputList.add( "" + drone.id + " L " + warehouse.id + " " + product.id + " " + quantity);
-        System.out.println("" + drone.id + " L " + warehouse.id + " " + product.id + " " + quantity);
+        //System.out.println("" + drone.id + " L " + warehouse.id + " " + product.id + " " + quantity);
     }
     public static void FlyAndDeliverTo(Drone drone, Commands command, Product product, int quantity){
         outputList.add( "" + drone.id + " D " + command.id + " " + product.id + " " + quantity);
-        System.out.println("" + drone.id + " D " + command.id + " " + product.id + " " + quantity);
+        //System.out.println("" + drone.id + " D " + command.id + " " + product.id + " " + quantity);
 
     }
     public static void wait(Drone drone, int turnsToWait){
@@ -141,5 +142,17 @@ public class Helpers {
     	return outputList;
     }
 
+    public static Object cloneObject(Object obj){
+        try{
+            Object clone = obj.getClass().newInstance();
+            for (Field field : obj.getClass().getDeclaredFields()) {
+                field.setAccessible(true);
+                field.set(clone, field.get(obj));
+            }
+            return clone;
+        }catch(Exception e){
+            return null;
+        }
+    }
 }
 

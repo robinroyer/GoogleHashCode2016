@@ -18,13 +18,13 @@ public class HashCode2016 {
     public static String REDUNDANCY_OUT = "src/main/java/GoogleHashCode2016/HashCode2016/Redundancy.out";
 
 
-    public static String MOHTER_IN = "src/main/java/GoogleHashCode2016/HashCode2016/mother_of_all_warehouses.in";
-    public static String MOHTER_OU = "src/main/java/GoogleHashCode2016/HashCode2016/mother_of_all_warehouses.out";
+    public static String MOTHER_IN = "src/main/java/GoogleHashCode2016/HashCode2016/mother_of_all_warehouses.in";
+    public static String MOTHER_OUT = "src/main/java/GoogleHashCode2016/HashCode2016/mother_of_all_warehouses.out";
 
 
     public static void main(String [] args) throws IOException{
 
-        FileUtils2016 fileUtils2016 = new FileUtils2016(REDUNDANCY_IN,REDUNDANCY_OUT);
+        FileUtils2016 fileUtils2016 = new FileUtils2016(MOTHER_IN, MOTHER_OUT);
 
         fileUtils2016.parseFile();
 

@@ -58,6 +58,13 @@ public class Commands {
         return;
     }
 
+
+    private void removeProducts(List<Product> products) {
+        for(Product product : products) {
+            this.removeProduct(product.id);
+        }
+    }
+
     public List<Product> getBestLoading (List<Product> products) {
         int CommandWeight = Helpers.sumWeight(this.stock, products);
         if (CommandWeight < this.maxWeight) {
@@ -65,7 +72,15 @@ public class Commands {
             return Helpers.stockToProductList(this.stock, products);
         }
         else {
-            return getBetterProductCombinaison(products);
+            Map<Integer, Integer> newStock = new HashMap<Integer,Integer>(this.stock);
+            List<Product> loading = getBestProductCombinaison(newStock, products, 0);
+            System.out.println("END!");
+
+
+
+
+            this.removeProducts(loading);
+            return loading;
         }
     }
 
@@ -86,6 +101,36 @@ public class Commands {
         }
         System.out.println("W : " + weight + " / MAX : " + maxWeight);
         return productList;
+    }
+
+    private List<Product> getBestProductCombinaison(Map<Integer, Integer> stock, List<Product> products, int maxItems) {
+        //System.out.println(stock.size());
+        int CommandWeight = Helpers.sumWeight(stock, products);
+        if(CommandWeight < this.maxWeight) {
+            System.out.println("BINGO");
+            return Helpers.stockToProductList(stock, products);
+        }
+        else {
+            //Iterator it = stock.keySet().iterator();
+            List<Product> bestList = new ArrayList<>();
+            System.out.println(stock.keySet());
+            for (int key : stock.keySet()) {
+                Map<Integer, Integer> newStock = new HashMap<Integer,Integer>(stock);
+                newStock.remove(key);
+                //List<Product> newList = getBestProductCombinaison(newStock, products, maxItems);
+                return getBestProductCombinaison(newStock, products, maxItems);
+                //System.out.println(this.id);
+//                if(newList.size() == stock.size()-1) {
+//                    System.out.println("CUT");
+//                    return newList;
+//                }
+//                if(newList.size() == maxItems) {
+//                    maxItems = newList.size();
+//                    bestList = newList;
+//                }
+            }
+            return bestList;
+        }
     }
 
 
